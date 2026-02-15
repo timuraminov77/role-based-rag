@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Env (секреты)
+.env
+
+# Chroma vector DB
+chroma_db/
+
+# Docker / build artifacts
+[internal]/
+CACHED
+exporting
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

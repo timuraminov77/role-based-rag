@@ -1,0 +1,50 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: role-rag-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: rag
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
+  api:
+    build: .
+    container_name: role-rag-api
+    env_file:
+      - .env
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: rag
+      MYSQL_PORT: 3306
+      CHROMA_PATH: /app/chroma_db
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./chroma_db:/app/chroma_db
+      - ./data:/app/data
+    depends_on:
+      - mysql
+
+  ingest:
+    build: .
+    container_name: role-rag-ingest
+    env_file:
+      - .env
+    environment:
+      CHROMA_PATH: /app/chroma_db
+    volumes:
+      - ./chroma_db:/app/chroma_db
+      - ./data:/app/data
+    command: [ "python", "create_vectordb.py" ]
+
+
+volumes:
+  mysql_data:
