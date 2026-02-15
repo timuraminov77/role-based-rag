@@ -43,7 +43,7 @@ services:
     volumes:
       - ./chroma_db:/app/chroma_db
       - ./data:/app/data
-    command: [ "python", "create_vectordb.py" ]
+    command: [ "python", "-m", "app.create_vectordb" ]
 
 
 volumes:

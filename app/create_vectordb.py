@@ -42,7 +42,7 @@ def load_and_split_md(glob_pattern="data/*/*.md"):
     metadatas = []
     ids = []
 
-    for path in Path(".").glob(glob_pattern):
+    for path in Path("..").glob(glob_pattern):
 
         m = re.search(r"_q([1-4])_", path.name.lower())
         quarter = f"Q{m.group(1)}" if m else "-"
@@ -170,7 +170,7 @@ print("MD added:", len(md_docs))
 
 
 csv_docs, csv_meta, csv_ids = load_csv(
-    "data/hr/hr_data.csv",
+    "../data/hr/hr_data.csv",
     access="hr",
     text_cols=["full_name",
         "role",

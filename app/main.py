@@ -57,7 +57,7 @@ def hello(user=Depends(login)):
     return user["role"]
 
 # Chroma
-CHROMA_PATH = os.getenv("CHROMA_PATH", "./chroma_db")
+CHROMA_PATH = os.getenv("CHROMA_PATH", "../chroma_db")
 client = chromadb.PersistentClient(path=CHROMA_PATH)
 
 emb = SentenceTransformerEmbeddingFunction(model_name="all-MiniLM-L6-v2")
