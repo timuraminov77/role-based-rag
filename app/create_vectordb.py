@@ -4,7 +4,7 @@ import pandas as pd
 from pathlib import Path
 
 import re
-
+import os
 from langchain_text_splitters import MarkdownHeaderTextSplitter, RecursiveCharacterTextSplitter
 
 emb = SentenceTransformerEmbeddingFunction(model_name="all-MiniLM-L6-v2")

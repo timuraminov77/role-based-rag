@@ -14,7 +14,7 @@ http://localhost:8000/ui
 
 ---
 
-## 🧠 Build Vector DB (first time)
+## Build Vector DB (first time)
 
 After the services are up, run:
 
